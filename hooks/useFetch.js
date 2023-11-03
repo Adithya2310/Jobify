@@ -1,21 +1,19 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export const useFetch=(query)=>{
+export const useFetch=(endpoint, query)=>{
     const [data,setData]=useState([]);
     const [error,setError]=useState(null);
     const [loading,setLoading]=useState(true);
 
     const options = {
         method: 'GET',
-        url: 'https://jsearch.p.rapidapi.com/search',
+        url: `https://jsearch.p.rapidapi.com/${endpoint}`,
         params: {
-          query: 'Python developer in Texas, USA',
-          page: '1',
-          num_pages: '1'
+            ...query
         },
         headers: {
-          'X-RapidAPI-Key': 'df948f9694msh0283bbb38c85b9cp1b02c1jsna9cdf03b1915',
+          'X-RapidAPI-Key': 'dbfe60d026msh3490b8db1f164edp1807a2jsnc7c88539a956',
           'X-RapidAPI-Host': 'jsearch.p.rapidapi.com'
         }
       };
@@ -37,6 +35,10 @@ export const useFetch=(query)=>{
     useEffect(()=>{
         fetchData();
     },[]);
-
-    return {data,error,loading};
+    // a funciton to refetch the same data
+    const refetch = () => {
+        setLoading(true);
+        fetchData();
+      };
+    return {data,error,loading, refetch};
 }

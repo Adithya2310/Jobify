@@ -7,8 +7,13 @@ import { useRouter } from 'expo-router';
 import { useFetch } from '../../../hooks/useFetch';
 
 const Nearbyjobs = () => {
+  // a javascript function return the current city,country of the client https://ipapi.co/json/
   const router=useRouter();
-  const {error,loading,data}=useFetch();
+  const {error,loading,data}=useFetch("search",{
+    query: 'Bangalore',
+    page: '1',
+    num_pages: '1'
+  });
   return (
     <View style={styles.container}>
       <View style={styles.header}>

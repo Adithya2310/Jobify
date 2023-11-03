@@ -9,13 +9,18 @@ import { useState } from 'react'
 
 const Popularjobs = () => {
   const router=useRouter();
-  const {error,loading,data}=useFetch();
+  const {error,loading,data}=useFetch("search",{
+    query: 'India',
+    page: '1',
+    num_pages: '1'
+  });
   
   // a function to handle job select
   const [selectedJob, setSelectedJob] = useState();
   const handleCardPress=(item)=>{
     console.log("navigating to",item.job_id);
-    router.push(`/job-detail/${item.job_id}`)
+    router.push(`job-detail/${item.job_id}`);
+    // router.push(`test/23`);
     setSelectedJob(item.job_id);
   }
 

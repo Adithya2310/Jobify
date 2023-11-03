@@ -4,15 +4,12 @@ import { View, Text,TextInput, TouchableOpacity, Image, FlatList } from 'react-n
 import styles from './welcome.style'
 import { useRouter } from 'expo-router'
 
-const Welcome = ({searchTerm,setSearchTerm}) => {
+const Welcome = ({searchTerm,setSearchTerm,handleClick}) => {
   // to handle the selectiong of routes
   const router=useRouter();
   const [activeJobType,setActiveJobType]=useState('FullTime')
   const jobTypes=['FullTime','PartTime','Contract']
   // a function to handle the click of search
-  const handleClick=(e)=>{
-    console.log("You are searching for ",searchTerm);
-  }
   return (
     <View>
       <View style={styles.container}>
