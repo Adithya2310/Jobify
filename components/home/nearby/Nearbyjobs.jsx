@@ -4,11 +4,11 @@ import styles from './nearbyjobs.style'
 import {COLORS} from "../../../constants";
 import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
 import { useRouter } from 'expo-router';
+import { useFetch } from '../../../hooks/useFetch';
 
 const Nearbyjobs = () => {
   const router=useRouter();
-  const isLoading=false;
-  const isError=false;
+  const {error,loading,data}=useFetch();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -18,22 +18,22 @@ const Nearbyjobs = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.cardsContainer}>
-      {isLoading ? (
+      {loading ? (
         <ActivityIndicator
           size="large"
           color={COLORS.primary}
         />):
-        isError?(<Text>Something went wrong</Text>):(
+        error?(<Text>Something went wrong</Text>):(
           <FlatList
-          data={[1,2,3,4,5,6,7,8,9,10]}
+          data={data}
           renderItem={({item})=>(
-            <TouchableOpacity onPress={()=>router.push('/job')}>
-              <NearbyJobCard/>
-            </TouchableOpacity>
+              <NearbyJobCard
+                job={item}
+                handleNavigate={(item)=>router.push(`/job-detail/${item.job_id}`)}
+              />
           )}
-          keyExtractor={(item)=>item}
+          keyExtractor={(item)=>item.job_id}
           contentContainerStyle={{columnGap:10}}
-          horizontal
           showsHorizontalScrollIndicator={false}
           />
       )}

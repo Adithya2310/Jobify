@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
   infoContainer: {
     marginTop: SIZES.large,
   },
-  jobName: (selectedJob, item) => ({
+  jobName: (selectedJob, job) => ({
     fontSize: SIZES.large,
     fontFamily: FONT.medium,
-    color: selectedJob === item.job_id ? COLORS.white : COLORS.primary,
+    color: selectedJob === job.job_id ? COLORS.white : COLORS.primary,
   }),
   infoWrapper: {
     flexDirection: "row",
@@ -44,12 +44,13 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   },
-  publisher: (selectedJob) => ({
+  publisher: (selectedJob, item) => ({
     fontSize: SIZES.medium - 2,
     fontFamily: FONT.bold,
     color: selectedJob === item.job_id ? COLORS.white : COLORS.primary,
   }),
   location: {
+    marginLeft: SIZES.small,
     fontSize: SIZES.medium - 2,
     fontFamily: FONT.regular,
     color: "#B3AEC6",

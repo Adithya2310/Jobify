@@ -30,8 +30,8 @@ const Home=()=>{
                     search={searchTerm}
                     setSearchTerm={setSearchTerm}
                 />
-                <Nearbyjobs/>
                 <Popularjobs/>      
+                <Nearbyjobs/>
             </View>
             </ScrollView>
         </SafeAreaView>
