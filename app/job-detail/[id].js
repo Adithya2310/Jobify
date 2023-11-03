@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import {View, Text, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl} from "react-native";
 import {COLORS,icons,images,SIZES} from "../../constants";
 import { useFetch } from "../../hooks/useFetch";
-import { Company, JobAbout, JobTabs, ScreenHeaderBtn, Specifics } from "../../components";
+import { Company, JobAbout, JobFooter, JobTabs, ScreenHeaderBtn, Specifics } from "../../components";
 
 const tabs=["About","Qualification","Responsibilities"];
 
@@ -108,6 +108,7 @@ const JobDetail=()=>{
                             )
                         }
                 </ScrollView>
+                <JobFooter url={data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} />
             </>
         </SafeAreaView>
     )
